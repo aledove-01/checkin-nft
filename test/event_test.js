@@ -5,10 +5,10 @@ const { ethers } = require("hardhat");
 var Web3 = require('web3');
 //console.log(Web3.version);
 
-describe("Event", function () {
+describe("Events", function () {
   
   it("Should return the calculated fee price (test)", async function () {
-    const Event = await ethers.getContractFactory("Event");
+    const Event = await ethers.getContractFactory("contracts/Events.sol:Events");
     const events = await Event.deploy(); 
     
     await events.deployed();
@@ -31,21 +31,26 @@ describe("Event", function () {
   });
 
   it("Should return the created new event", async function () {
-    const Event = await ethers.getContractFactory("Event");
+    const Event = await ethers.getContractFactory("contracts/Events.sol:Events");
     const events = await Event.deploy(); 
     
     await events.deployed();
     const _id = 1;
     const _name = "test event 1";
     const _cantTokenMax = 1000;
-    const _price = 10;
+    const _price = 1;
     const _dateOff = 16111111;
     const _dateEvent = 1630022;
     const _urlImg = "http://urltest.com/img1.jpg";
 
     const ret =  await events.calcFee(_price,_cantTokenMax);
 
-    console.log('FEE: ',ret);
+    //const [owner] = await ethers.getSigners();
+
+    //const ownerBalance = await events.balanceOf(owner.address);
+    
+    //console.log("Balance: ",ownerBalance);
+    //console.log('FEE: ',ethers.utils.formatEther(ret,{pad:true}));
     await expect(
       events.addEvent(_id, _name , _cantTokenMax, _price, _dateOff, _dateEvent, _urlImg,
         { value: ethers.utils.parseEther("10") }),

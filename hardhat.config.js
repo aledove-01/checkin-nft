@@ -19,6 +19,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 //cuenta owner 0x0584CD0D2B4fBEC1741D5Da4174D8619c3fF69BC
 
 //npx hardhat run scripts/sample-script.js --network rinkeby
+
+//npx hardhat run --network rinkeby
+//npx hardhat run scripts/sample-script.js --network rinkeby; 
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -27,7 +31,8 @@ module.exports = {
   networks: {
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`,
-      accounts: [process.env.DEPLOYER_PRIVATE_KEY]
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+      gas: 3000000,
     }
   }
 };
