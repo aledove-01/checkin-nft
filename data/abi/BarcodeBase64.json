@@ -1,0 +1,3 @@
+[
+  "function getFontBarcode() pure returns (string)"
+]

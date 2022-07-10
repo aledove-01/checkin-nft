@@ -4,10 +4,12 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
+import "./BarcodeBase64.sol";
 
-library GenTiketURI {
+library GenTicketURI {
     using Base64 for bytes;
     using Strings for string;
+    using BarcodeBase64 for string;
 
     struct SVGParams {
         string descEvent;
@@ -39,6 +41,7 @@ library GenTiketURI {
                 ,']]></tspan></text><text dx="0" dy="0" font-family="&quot;e4OmChpVYcw1:::Roboto&quot;" font-size="15" font-weight="400" transform="translate(300 131.743259)" stroke-width="0"><tspan y="0" font-weight="400" stroke-width="0"><![CDATA['
                 ,'https://cryptotikets.com'
                 ,']]></tspan></text><style><![CDATA[@font-face {font-family: "e4OmChpVYcw1:::Libre Barcode 128";font-style: normal;font-weight: 400;src: url(https://fonts.gstatic.com/l/font?kit=cIfnMbdUsUoiW3O_hVviCwVjuLtXeJ_A5kUM-Rno3i7qt7kObPreosnCBn6z-pX46gpD85ar170Xuna3ZkzEU7JmvEx6nPmq2oL5uxuJfAG-FnmH0I0W1X9FhRE&skey=b4e8c1d4fad3a49&v=v26) format("truetype");}@font-face {font-family: "e4OmChpVYcw1:::Roboto";font-style: normal;font-weight: 400;'
+                ,BarcodeBase64.getFontBarcode()
                 ,' src: url(https://fonts.gstatic.com/l/font?kit=KFOmCnqEu92Fr1Me5X4NIx0QBO7CpLp9T06CNmEmWXWaGaNKYhvyymy68zpOtgRavhUYnbWzMYWcO-O482hHZlSoVqlDpb8RT8etAr-l495W&skey=a0a0114a1dcab3ac&v=v30) format("truetype");}@font-face {font-family: "e4OmChpVYcw1:::Roboto";font-style: normal;font-weight: 700;src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmWUlvAwV_Cuvfu6d-SkmHNWwpVAzhYKdObQzV5F2_9D9CugleuhAbgKmvNYKZN1VNSAgHFDTeI8MzyNpXB7KTAryk495XfiVR&skey=c06e7213f788649e&v=v30) format("truetype");}]]></style></svg>'));
         svg = string(abi.encodePacked('data:image/svg+xml;base64,',bytes(svg).encode()));
         string memory json = (

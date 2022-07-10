@@ -27,7 +27,7 @@ contract CheckInNFTV1 is ERC721, ERC721Enumerable {
     function mint(address _to) internal returns (uint256) {
         _tokenIdCounter++;
         uint256 tokenId = _tokenIdCounter;
-        _safeMint(_to, tokenId);
+        _mint(_to, tokenId);
         //_setTokenURI(tokenId, uri);
         return tokenId;
     }

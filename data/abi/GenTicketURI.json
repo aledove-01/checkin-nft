@@ -1,0 +1,3 @@
+[
+  "function genUri(tuple(string,string,string,address,uint256)) pure returns (string)"
+]
